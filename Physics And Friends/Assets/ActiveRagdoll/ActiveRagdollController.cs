@@ -33,7 +33,10 @@ public class ActiveRagdollController : MonoBehaviour
     {
         foreach (ConfigJoints joint in joints)
         {
-            joint.Init();
+            if (joint != null)
+            {
+                joint.Init();
+            }
         }
     }
     private void InitializeRigidboides()
