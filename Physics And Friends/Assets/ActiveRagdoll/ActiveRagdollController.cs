@@ -1,9 +1,10 @@
+using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActiveRagdollController : MonoBehaviour
+public class ActiveRagdollController : NetworkBehaviour
 {
     [SerializeField] private ConfigJoint[] joints;
     [SerializeField] private Rigidbody[] rigidbodies;
@@ -21,7 +22,7 @@ public class ActiveRagdollController : MonoBehaviour
             }
         }
     }
-    private void Start()
+    public override void OnStartLocalPlayer()
     {
         InitializeRigidboides();
         foreach(ConfigJoint joint in joints)
@@ -31,6 +32,7 @@ public class ActiveRagdollController : MonoBehaviour
     }
     private void Update()
     {
+        if (!isLocalPlayer) { return; }
         SyncRagdollAndAnimation();
     }
 
@@ -77,7 +79,7 @@ public class ConfigJoint
         {
             if (jointGroup[i] != null)
             {
-                jointInitialRotation[i] = jointGroup[i].transform.rotation;
+                jointInitialRotation[i] = jointGroup[i].transform.localRotation;
             }
         }
     }
@@ -101,7 +103,7 @@ public class ConfigJoint
         if (jointGroup == null) { return; }
         for (int i = 0; i < jointGroup.Length; i++)
         {
-            ConfigurableJointExtensions.SetTargetRotationLocal(jointGroup[i], correspondingAnimatedJoint[i].rotation, jointInitialRotation[i]);
+            ConfigurableJointExtensions.SetTargetRotationLocal(jointGroup[i], correspondingAnimatedJoint[i].localRotation, jointInitialRotation[i]);
         }
     }
 }
