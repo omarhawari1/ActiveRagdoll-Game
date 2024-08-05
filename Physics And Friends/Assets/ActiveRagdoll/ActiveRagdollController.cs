@@ -5,45 +5,47 @@ using UnityEngine;
 
 public class ActiveRagdollController : MonoBehaviour
 {
-    [SerializeField] private bool updateJointValues;
-    [SerializeField] private ConfigJoints[] joints;
-    [SerializeField] private Rigidbody[] rigidbodys;
+    [SerializeField] private ConfigJoint[] joints;
+    [SerializeField] private Rigidbody[] rigidbodies;
     [SerializeField] private int solverIterations;
     [SerializeField] private int velSolverIterations;
     [SerializeField] private int maxAngularVelocity;
 
     private void OnValidate()
     {
-        InitializeJoints();
+        foreach (ConfigJoint joint in joints)
+        {
+            if (joint != null)
+            {
+                joint.UpdateJointVariables();
+            }
+        }
     }
     private void Start()
     {
         InitializeRigidboides();
+        foreach(ConfigJoint joint in joints)
+        {
+            joint.Initialize();
+        }
     }
     private void Update()
     {
-        if (updateJointValues)
-        {
-            InitializeJoints();
-        }
+        SyncRagdollAndAnimation();
     }
 
-
-    private void InitializeJoints()
+    private void SyncRagdollAndAnimation()
     {
-        foreach (ConfigJoints joint in joints)
+        foreach(ConfigJoint joint in joints)
         {
-            if (joint != null)
-            {
-                joint.Init();
-            }
+            joint.SyncAnimation();
         }
     }
     private void InitializeRigidboides()
     {
-        if (rigidbodys != null)
+        if (rigidbodies != null)
         {
-            foreach (Rigidbody rigidbody in rigidbodys)
+            foreach (Rigidbody rigidbody in rigidbodies)
             {
                 rigidbody.solverIterations = solverIterations;
                 rigidbody.solverVelocityIterations = velSolverIterations;
@@ -54,31 +56,63 @@ public class ActiveRagdollController : MonoBehaviour
 }
 
 [Serializable]
-public class ConfigJoints
+public class ConfigJoint
 {
-    public ConfigurableJoint[] joints;
+    public jointGroupType jointGroupType;
+    public ConfigurableJoint[] jointGroup;
+    public Transform[] correspondingAnimatedJoint;
     public JointDrive jointDrive;
     public float rotationSpring;
     public float rotationDamping;
     public float rotationMaxForce;
     public float mass;
 
-    public void Init()
+    private Quaternion[] jointInitialRotation;
+
+    public void Initialize()
     {
-        foreach (ConfigurableJoint joint in joints)
+        if (jointGroup == null) { return; }
+        jointInitialRotation = new Quaternion[jointGroup.Length];
+        for (int i = 0; i < jointGroup.Length; i++)
         {
-            if(joint == null) { return; }
-            UpdateVariables(joint);
+            if (jointGroup[i] != null)
+            {
+                jointInitialRotation[i] = jointGroup[i].transform.rotation;
+            }
         }
     }
-    private void UpdateVariables(ConfigurableJoint joint)
+    public void UpdateJointVariables()
     {
-        JointDrive newDrive = new JointDrive();
-        newDrive.positionSpring = rotationSpring;
-        newDrive.positionDamper = rotationDamping;
-        newDrive.maximumForce = rotationMaxForce;
-        joint.slerpDrive = newDrive;
-        Rigidbody rb = joint.GetComponent<Rigidbody>();
-        rb.mass = mass;
+        if (jointGroup == null) { return; }
+        foreach (ConfigurableJoint joint in jointGroup)
+        {
+            JointDrive newDrive = new JointDrive();
+            newDrive.positionSpring = rotationSpring;
+            newDrive.positionDamper = rotationDamping;
+            newDrive.maximumForce = rotationMaxForce;
+            joint.slerpDrive = newDrive;
+            Rigidbody rb = joint.GetComponent<Rigidbody>();
+            rb.mass = mass;
+        }
     }
+
+    public void SyncAnimation()
+    {
+        if (jointGroup == null) { return; }
+        for (int i = 0; i < jointGroup.Length; i++)
+        {
+            ConfigurableJointExtensions.SetTargetRotationLocal(jointGroup[i], correspondingAnimatedJoint[i].rotation, jointInitialRotation[i]);
+        }
+    }
+}
+
+public enum jointGroupType
+{
+    None = 0,
+    Head,
+    Torso,
+    Arms,
+    ForeArms,
+    Legs,
+    Knees
 }
