@@ -24,15 +24,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Fire",
-                    "type": "Button",
-                    "id": "e533136f-13e6-4b79-8f34-139fcc38ae0a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "2d0480f9-675f-4e2f-b704-5d0ffd6ec72a",
@@ -42,18 +33,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Sprint",
+                    "name": "Right Hand Grab",
                     "type": "Button",
-                    "id": "74e67109-b516-4218-9576-c77cbd0c204d",
+                    "id": "9ba1ebfa-fa7b-48db-b0a9-9a625a527d68",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pump Menu",
+                    "name": "Left Hand Grab",
                     "type": "Button",
-                    "id": "9e4da768-bb45-421c-aee2-3a4e663a7ec9",
+                    "id": "b220f241-d787-43e0-bb68-689516221657",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -228,61 +219,6 @@
                 },
                 {
                     "name": "",
-                    "id": "143bb1cd-cc10-4eca-a2f0-a3664166fe91",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "05f6913d-c316-48b2-a6bb-e225f14c7960",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "886e731e-7071-4ae4-95c0-e61739dad6fd",
-                    "path": "<Touchscreen>/primaryTouch/tap",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Touch",
-                    "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ee3d0cd2-254e-47a7-a8cb-bc94d9658c54",
-                    "path": "<Joystick>/trigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Joystick",
-                    "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8255d333-5683-4943-a58a-ccb207ff1dce",
-                    "path": "<XRController>/{PrimaryAction}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "XR",
-                    "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "e132fe0f-4b11-471e-8a64-4fcc4ac6ba53",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -305,23 +241,45 @@
                 },
                 {
                     "name": "",
-                    "id": "728630ab-9709-4a8d-ad81-24618b261c82",
-                    "path": "<Keyboard>/leftShift",
+                    "id": "cf59fd97-ed8a-4406-a5e8-ca652f03849b",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Sprint",
+                    "action": "Right Hand Grab",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "66ec37b1-5bfd-47a5-8f04-35e303e00563",
-                    "path": "<Keyboard>/q",
+                    "id": "0e86878e-a64e-45c3-ba4a-890e901c3cd8",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pump Menu",
+                    "action": "Right Hand Grab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9d31d4ca-4178-4cb9-a2d2-2fd9181fa4b6",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left Hand Grab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2d3616f8-4f82-459f-9a39-0a005323860e",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left Hand Grab",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
