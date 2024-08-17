@@ -1043,21 +1043,6 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  leftHandTarget: {fileID: 7804881999630669267}
-  rightHandTarget: {fileID: 608700607036843438}
-  leftHandRestPosition: {fileID: 3649700551639508821}
-  rightHandRestPosition: {fileID: 7315101523788078692}
-  armPunchStrength: 25
-  armPunchForce: 400
-  punchWindUpSpeed: 4
-  rightArmPunchPositon: {fileID: 6419044493437643163}
-  leftArmPunchPosition: {fileID: 7341691562063736311}
-  grabRadius: 0.1
-  armGrabStrength: 25
-  leftHandGrabPosition: {fileID: 696242785981155852}
-  leftHandBone: {fileID: 6412248710054554286}
-  RightHandGrabPosition: {fileID: 696242785981155852}
-  rightHandBone: {fileID: 657548966439163528}
 --- !u!1 &1314069911650172034
 GameObject:
   m_ObjectHideFlags: 0
@@ -7458,7 +7443,6 @@ GameObject:
   - component: {fileID: 5614738495775222326}
   - component: {fileID: 1543786986064308992}
   - component: {fileID: 3510174415479217202}
-  - component: {fileID: 2633618749104260527}
   m_Layer: 7
   m_Name: Animated Rig
   m_TagString: Untagged
@@ -7605,23 +7589,6 @@ MonoBehaviour:
   - m_Rig: {fileID: 3078256177849170477}
     m_Active: 1
   m_Effectors: []
---- !u!114 &2633618749104260527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8959783258032845926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 1
-  syncMode: 0
-  syncInterval: 0
-  clientAuthority: 1
-  animator: {fileID: 1543786986064308992}
 --- !u!1 &9016180375905151400
 GameObject:
   m_ObjectHideFlags: 0
